@@ -8,7 +8,8 @@ const Videogrid = () => {
   useEffect(() => {
     const fetchvideo = async () => {
       try {
-        const res = await axiosInstance.get("/video/getall");
+        const res = await axiosInstance.get("/video/getallvideo");
+
         setvideo(res.data);
       } catch (error) {
         console.log(error);
