@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
   env: {
-  BACKEND_URL: "http://localhost:5000",
+  BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
 },
 };
 
