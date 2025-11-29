@@ -17,7 +17,7 @@ const index = () => {
     const fetchvideo = async () => {
       if (!id || typeof id !== "string") return;
       try {
-        const res = await axiosInstance.get("/video/getallvideo");
+        const res = await axiosInstance.get("/video/getall");
         const video = res.data?.filter((vid: any) => vid._id === id);
         setvideo(video[0]);
         setvide(res.data);
