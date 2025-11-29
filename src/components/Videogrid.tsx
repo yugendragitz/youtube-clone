@@ -9,7 +9,6 @@ const Videogrid = () => {
     const fetchvideo = async () => {
       try {
         const res = await axiosInstance.get("/video/getall");
-
         setvideo(res.data);
       } catch (error) {
         console.log(error);
