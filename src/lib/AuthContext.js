@@ -43,28 +43,27 @@ export const UserProvider = ({ children }) => {
   };
 
  useEffect(() => {
-  const unsubcribe = onAuthStateChanged(auth, async (firebaseuser) => {
-    const isAlreadyLoggedIn = localStorage.getItem("user");
+  const unsubscribe = onAuthStateChanged(auth, (firebaseuser) => {
+    // Only set user state, DO NOT AUTO-LOGIN
+    if (firebaseuser && !user) {
+      setUser({
+        email: firebaseuser.email,
+        name: firebaseuser.displayName,
+        image: firebaseuser.photoURL || "https://github.com/shadcn.png",
+      });
 
-    // Prevent auto-login from firing right after Google popup
-    if (!isAlreadyLoggedIn && firebaseuser) {
-      try {
-        const payload = {
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
           email: firebaseuser.email,
           name: firebaseuser.displayName,
           image: firebaseuser.photoURL || "https://github.com/shadcn.png",
-        };
-
-        const response = await axiosInstance.post("/user/login", payload);
-        login(response.data.result);
-      } catch (error) {
-        console.error(error);
-        logout();
-      }
+        })
+      );
     }
   });
 
-  return () => unsubcribe();
+  return () => unsubscribe();
 }, []);
 
 
