@@ -1,19 +1,16 @@
-// youtube/src/lib/firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
-// Firebase config for your project (use the values from your Firebase console)
 const firebaseConfig = {
-  apiKey: "AIzaSyCeBZepMcqUN7Gmrph1eXgvCvbl6dO0x8Q",
-  authDomain: "clone-9caba.firebaseapp.com",
-  projectId: "clone-9caba",
-  storageBucket: "clone-9caba.firebasestorage.app",
-  messagingSenderId: "521022390386",
-  appId: "1:521022390386:web:29289c4de25f07ceb802eb",
-  measurementId: "G-TBKBDN7VX6"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
